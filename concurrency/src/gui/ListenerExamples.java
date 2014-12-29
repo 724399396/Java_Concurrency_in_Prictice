@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.concurrent.*;
 
 import javax.swing.*;
-
+@SuppressWarnings("unused")
 public class ListenerExamples {
 	private static ExecutorService exec = Executors.newCachedThreadPool();
 	
@@ -126,6 +126,7 @@ public class ListenerExamples {
 					private void doSomeWork() {
 					}
 					
+
 					private void onCompletion(boolean cancelled, String s, Throwable exception) {
 						cancelButton.removeActionListener(listener);
 						label.setText("done");
