@@ -30,4 +30,15 @@ public class BoundedBuffer<V> extends BaseBoundedBuffer<V> {
 		notifyAll();
 		return v;
 	}
+	
+	// BLOCKS-UNTIL: not-full
+	// Alternate from of put() using condition notification
+	public synchronized void alternatePut(V v) throws InterruptedException {
+		while (isFull())
+			wait();
+		boolean wasEmpty = isEmpty();
+		doPut(v);
+		if (wasEmpty)
+			notifyAll();
+	}
 }
